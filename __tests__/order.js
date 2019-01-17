@@ -14,10 +14,16 @@ describe('#constructor', () => {
   })
 
   describe('invalid parameters', () => {
-    test('userId should be an integer', () => {
+    test('userId should be a number', () => {
       expect(() => {
         new Order('1')
-      }).toThrowError('Error creating order. userId must be a number.')
+      }).toThrowError('Error creating order, userId must be a number.')
+    })
+
+    test('quantity should be a number', () => {
+      expect(() => {
+        new Order(1, '3.5')
+      }).toThrowError('Error creating order, quantity must be a number.')
     })
   })
 })
