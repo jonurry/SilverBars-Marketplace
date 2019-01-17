@@ -10,16 +10,25 @@ const checkPositiveNumber = (name, value) => {
   }
 }
 
+const checkValidValues = (name, value, validValues) => {
+  if (Array.isArray(validValues) && !validValues.includes(value)) {
+    throw `Error creating order, ${name} must be one of ${validValues.join(
+      ', '
+    )}.`
+  }
+}
+
 const checkWrongType = (name, value, type) => {
   if (typeof value != type) {
     throw `Error creating order, ${name} must be a ${type}.`
   }
 }
 
-const validate = (name, value, type) => {
+const validate = (name, value, type, validValues) => {
   checkMissingParameter(name, value)
   checkWrongType(name, value, type)
   checkPositiveNumber(name, value)
+  checkValidValues(name, value, validValues)
 }
 
 export default class Order {
@@ -27,7 +36,7 @@ export default class Order {
     validate('userId', userId, 'number')
     validate('quantity', quantity, 'number')
     validate('price', price, 'number')
-    validate('type', type, 'string')
+    validate('type', type, 'string', ['BUY', 'SELL'])
     this.userId = userId
     this.quantity = quantity
     this.price = price
