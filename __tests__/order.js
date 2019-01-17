@@ -14,28 +14,60 @@ describe('#constructor', () => {
   })
 
   describe('invalid parameters', () => {
-    test('userId should be a number', () => {
-      expect(() => {
-        new Order('1')
-      }).toThrowError('Error creating order, userId must be a number.')
+    describe('wrong type used', () => {
+      test('userId should be a number', () => {
+        expect(() => {
+          new Order('1')
+        }).toThrowError('Error creating order, userId must be a number.')
+      })
+
+      test('quantity should be a number', () => {
+        expect(() => {
+          new Order(1, '3.5')
+        }).toThrowError('Error creating order, quantity must be a number.')
+      })
+
+      test('price should be a number', () => {
+        expect(() => {
+          new Order(1, 3.5, {})
+        }).toThrowError('Error creating order, price must be a number.')
+      })
+
+      test('type should be a string', () => {
+        expect(() => {
+          new Order(1, 3.5, 310, [])
+        }).toThrowError('Error creating order, type must be a string.')
+      })
     })
 
-    test('quantity should be a number', () => {
-      expect(() => {
-        new Order(1, '3.5')
-      }).toThrowError('Error creating order, quantity must be a number.')
-    })
+    describe('missing parameters', () => {
+      test('userId is missing', () => {
+        expect(() => {
+          new Order()
+        }).toThrowError(
+          'Error creating order, the userId parameter is missing.'
+        )
+      })
 
-    test('price should be a number', () => {
-      expect(() => {
-        new Order(1, 3.5, {})
-      }).toThrowError('Error creating order, price must be a number.')
-    })
+      test('quantity is missing', () => {
+        expect(() => {
+          new Order(5)
+        }).toThrowError(
+          'Error creating order, the quantity parameter is missing.'
+        )
+      })
 
-    test('type should be a string', () => {
-      expect(() => {
-        new Order(1, 3.5, 310, [])
-      }).toThrowError('Error creating order, type must be a string.')
+      test('price is missing', () => {
+        expect(() => {
+          new Order(5, 10)
+        }).toThrowError('Error creating order, the price parameter is missing.')
+      })
+
+      test('type is missing', () => {
+        expect(() => {
+          new Order(5, 5.4, 314)
+        }).toThrowError('Error creating order, the type parameter is missing.')
+      })
     })
   })
 })

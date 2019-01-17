@@ -1,4 +1,7 @@
 const validate = (name, value, type) => {
+  if (typeof value === 'undefined') {
+    throw `Error creating order, the ${name} parameter is missing.`
+  }
   if (typeof value != type) {
     throw `Error creating order, ${name} must be a ${type}.`
   }
