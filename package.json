@@ -1,0 +1,37 @@
+{
+  "name": "silverbars-marketplace",
+  "version": "1.0.0",
+  "description": "tech test for credit suisse",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx babel src --out-dir lib",
+    "test": "npx jest --coverage --verbose --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonurry/SilverBars-Marketplace.git"
+  },
+  "keywords": [
+    "silver",
+    "bars",
+    "marketplace",
+    "tech",
+    "test",
+    "node",
+    "javascript"
+  ],
+  "author": "Jon Urry <jon@urry.me> (http://jon.urry.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonurry/SilverBars-Marketplace/issues"
+  },
+  "homepage": "https://github.com/jonurry/SilverBars-Marketplace#readme",
+  "devDependencies": {
+    "@babel/core": "*",
+    "@babel/cli": "*",
+    "@babel/preset-env": "*",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "*",
+    "jest": "*"
+  }
+}
