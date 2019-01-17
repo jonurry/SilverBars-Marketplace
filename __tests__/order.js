@@ -12,4 +12,12 @@ describe('#constructor', () => {
     expect(order.price).toEqual(PRICE_PER_KG)
     expect(order.type).toEqual(TYPE)
   })
+
+  describe('invalid parameters', () => {
+    test('userId should be an integer', () => {
+      expect(() => {
+        new Order('1')
+      }).toThrowError('Error creating order. userId must be a number.')
+    })
+  })
 })
