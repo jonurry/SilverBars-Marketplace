@@ -9,6 +9,7 @@ export default class Order {
     validate('userId', userId, 'number')
     validate('quantity', quantity, 'number')
     validate('price', price, 'number')
+    validate('type', type, 'string')
     this.userId = userId
     this.quantity = quantity
     this.price = price

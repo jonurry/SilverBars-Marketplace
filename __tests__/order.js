@@ -31,5 +31,11 @@ describe('#constructor', () => {
         new Order(1, 3.5, {})
       }).toThrowError('Error creating order, price must be a number.')
     })
+
+    test('type should be a string', () => {
+      expect(() => {
+        new Order(1, 3.5, 310, [])
+      }).toThrowError('Error creating order, type must be a string.')
+    })
   })
 })
