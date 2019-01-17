@@ -8,6 +8,7 @@ export default class Order {
   constructor(userId, quantity, price, type) {
     validate('userId', userId, 'number')
     validate('quantity', quantity, 'number')
+    validate('price', price, 'number')
     this.userId = userId
     this.quantity = quantity
     this.price = price
