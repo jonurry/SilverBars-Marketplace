@@ -69,5 +69,31 @@ describe('#constructor', () => {
         }).toThrowError('Error creating order, the type parameter is missing.')
       })
     })
+
+    describe('numbers must be positive', () => {
+      test('userId must be a positive number', () => {
+        expect(() => {
+          new Order(-20)
+        }).toThrowError(
+          'Error creating order, userId must be a positive number.'
+        )
+      })
+
+      test('quantity must be a positive number', () => {
+        expect(() => {
+          new Order(10, -5)
+        }).toThrowError(
+          'Error creating order, quantity must be a positive number.'
+        )
+      })
+
+      test('price must be a positive number', () => {
+        expect(() => {
+          new Order(31, 2.2, -3)
+        }).toThrowError(
+          'Error creating order, price must be a positive number.'
+        )
+      })
+    })
   })
 })
