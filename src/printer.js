@@ -34,9 +34,15 @@ const sortByPriceAsc = orders => {
   })
 }
 
+const sortByPriceDesc = orders => {
+  return orders.sort((a, b) => {
+    return b.price - a.price
+  })
+}
+
 export default class OrderBoardPrinter {
   summary(orders) {
-    let buyOrders = sortByPriceAsc(
+    let buyOrders = sortByPriceDesc(
       mergeByPrice(filterOrdersByType(orders, 'BUY'))
     )
     return formatLineItems(buyOrders, 'BUY').join('\n')

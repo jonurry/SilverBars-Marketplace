@@ -28,9 +28,9 @@ describe('OrderBoardPrinter', () => {
         type: 'BUY'
       }
     ]
-    const expectedOutput = `BUY: 2.5kg for £303
+    const expectedOutput = `BUY: 1.2kg for £307
 BUY: 3.0kg for £306
-BUY: 1.2kg for £307`
+BUY: 2.5kg for £303`
     const printer = new OrderBoardPrinter()
     expect(printer.summary(buyOrders)).toEqual(expectedOutput)
   })
