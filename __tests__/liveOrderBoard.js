@@ -6,6 +6,12 @@ const buyOrder = {
   price: 303,
   type: 'BUY'
 }
+const buyOrder2 = {
+  userId: 3,
+  quantity: 1.4,
+  price: 306,
+  type: 'BUY'
+}
 const sellOrder = {
   userId: 2,
   quantity: 1.7,
@@ -82,6 +88,58 @@ describe('Live Order Board', () => {
       })
 
       test('the second order should be SELL', () => {
+        expect(liveOrderBoard._orders[1]).toEqual(sellOrder)
+      })
+    })
+
+    describe('#cancelOrder', () => {
+      let liveOrderBoard
+      const orderFactory = jest.fn()
+
+      beforeEach(() => {
+        orderFactory
+          .mockReturnValueOnce(buyOrder)
+          .mockReturnValueOnce(sellOrder)
+          .mockReturnValueOnce(buyOrder2)
+        liveOrderBoard = new LiveOrderBoard(orderFactory)
+        liveOrderBoard.registerOrder(
+          buyOrder.userId,
+          buyOrder.quantity,
+          buyOrder.price,
+          buyOrder.type
+        )
+        liveOrderBoard.registerOrder(
+          sellOrder.userId,
+          sellOrder.quantity,
+          sellOrder.price,
+          sellOrder.type
+        )
+        liveOrderBoard.registerOrder(
+          buyOrder2.userId,
+          buyOrder2.quantity,
+          buyOrder2.price,
+          buyOrder2.type
+        )
+      })
+
+      test('it should cancel the first order', () => {
+        liveOrderBoard.cancelOrder(1)
+        expect(liveOrderBoard._orders.length).toBe(2)
+        expect(liveOrderBoard._orders[0]).toEqual(sellOrder)
+        expect(liveOrderBoard._orders[1]).toEqual(buyOrder2)
+      })
+
+      test('it should cancel the second order', () => {
+        liveOrderBoard.cancelOrder(2)
+        expect(liveOrderBoard._orders.length).toBe(2)
+        expect(liveOrderBoard._orders[0]).toEqual(buyOrder)
+        expect(liveOrderBoard._orders[1]).toEqual(buyOrder2)
+      })
+
+      test('it should cancel the third order', () => {
+        liveOrderBoard.cancelOrder(3)
+        expect(liveOrderBoard._orders.length).toBe(2)
+        expect(liveOrderBoard._orders[0]).toEqual(buyOrder)
         expect(liveOrderBoard._orders[1]).toEqual(sellOrder)
       })
     })

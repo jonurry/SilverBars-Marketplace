@@ -4,6 +4,10 @@ export default class LiveOrderBoard {
     this._orders = []
   }
 
+  cancelOrder(position) {
+    this._orders.splice(position - 1, 1)
+  }
+
   registerOrder(userId, quantity, price, type) {
     let newOrder = this.orderFactory(userId, quantity, price, type)
     this._orders.push(newOrder)
