@@ -1,4 +1,4 @@
-import Order from '../src/order.js'
+import createOrder from '../src/order.js'
 
 describe('Order', () => {
   describe('#constructor', () => {
@@ -8,7 +8,7 @@ describe('Order', () => {
         const QUANTITY = 2.0
         const PRICE_PER_KG = 305
         const TYPE = 'BUY'
-        let order = new Order(USER_ID, QUANTITY, PRICE_PER_KG, TYPE)
+        let order = createOrder(USER_ID, QUANTITY, PRICE_PER_KG, TYPE)
         expect(order.userId).toEqual(USER_ID)
         expect(order.quantity).toEqual(QUANTITY)
         expect(order.price).toEqual(PRICE_PER_KG)
@@ -20,7 +20,7 @@ describe('Order', () => {
         const QUANTITY = 2.9
         const PRICE_PER_KG = 312
         const TYPE = 'SELL'
-        let order = new Order(USER_ID, QUANTITY, PRICE_PER_KG, TYPE)
+        let order = createOrder(USER_ID, QUANTITY, PRICE_PER_KG, TYPE)
         expect(order.userId).toEqual(USER_ID)
         expect(order.quantity).toEqual(QUANTITY)
         expect(order.price).toEqual(PRICE_PER_KG)
@@ -32,25 +32,25 @@ describe('Order', () => {
       describe('wrong type used', () => {
         test('userId should be a number', () => {
           expect(() => {
-            new Order('1')
+            createOrder('1')
           }).toThrowError('Error creating order, userId must be a number.')
         })
 
         test('quantity should be a number', () => {
           expect(() => {
-            new Order(1, '3.5')
+            createOrder(1, '3.5')
           }).toThrowError('Error creating order, quantity must be a number.')
         })
 
         test('price should be a number', () => {
           expect(() => {
-            new Order(1, 3.5, {})
+            createOrder(1, 3.5, {})
           }).toThrowError('Error creating order, price must be a number.')
         })
 
         test('type should be a string', () => {
           expect(() => {
-            new Order(1, 3.5, 310, [])
+            createOrder(1, 3.5, 310, [])
           }).toThrowError('Error creating order, type must be a string.')
         })
       })
@@ -58,7 +58,7 @@ describe('Order', () => {
       describe('missing parameters', () => {
         test('userId is missing', () => {
           expect(() => {
-            new Order()
+            createOrder()
           }).toThrowError(
             'Error creating order, the userId parameter is missing.'
           )
@@ -66,7 +66,7 @@ describe('Order', () => {
 
         test('quantity is missing', () => {
           expect(() => {
-            new Order(5)
+            createOrder(5)
           }).toThrowError(
             'Error creating order, the quantity parameter is missing.'
           )
@@ -74,7 +74,7 @@ describe('Order', () => {
 
         test('price is missing', () => {
           expect(() => {
-            new Order(5, 10)
+            createOrder(5, 10)
           }).toThrowError(
             'Error creating order, the price parameter is missing.'
           )
@@ -82,7 +82,7 @@ describe('Order', () => {
 
         test('type is missing', () => {
           expect(() => {
-            new Order(5, 5.4, 314)
+            createOrder(5, 5.4, 314)
           }).toThrowError(
             'Error creating order, the type parameter is missing.'
           )
@@ -92,7 +92,7 @@ describe('Order', () => {
       describe('numbers must be positive', () => {
         test('userId must be a positive number', () => {
           expect(() => {
-            new Order(-20)
+            createOrder(-20)
           }).toThrowError(
             'Error creating order, userId must be a positive number.'
           )
@@ -100,7 +100,7 @@ describe('Order', () => {
 
         test('quantity must be a positive number', () => {
           expect(() => {
-            new Order(10, -5)
+            createOrder(10, -5)
           }).toThrowError(
             'Error creating order, quantity must be a positive number.'
           )
@@ -108,7 +108,7 @@ describe('Order', () => {
 
         test('price must be a positive number', () => {
           expect(() => {
-            new Order(31, 2.2, -3)
+            createOrder(31, 2.2, -3)
           }).toThrowError(
             'Error creating order, price must be a positive number.'
           )
@@ -118,7 +118,7 @@ describe('Order', () => {
       describe('type should be \'BUY\' or \'SELL\' only', () => {
         test('\'TRADE\' is not a valid type', () => {
           expect(() => {
-            new Order(1, 3.5, 310, 'TRADE')
+            createOrder(1, 3.5, 310, 'TRADE')
           }).toThrowError(
             'Error creating order, type must be one of BUY, SELL.'
           )

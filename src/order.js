@@ -31,7 +31,7 @@ const validate = (name, value, type, validValues) => {
   checkValidValues(name, value, validValues)
 }
 
-export default class Order {
+class Order {
   constructor(userId, quantity, price, type) {
     validate('userId', userId, 'number')
     validate('quantity', quantity, 'number')
@@ -42,4 +42,8 @@ export default class Order {
     this.price = price
     this.type = type
   }
+}
+
+export default function createOrder(userId, quantity, price, type) {
+  return new Order(userId, quantity, price, type)
 }
