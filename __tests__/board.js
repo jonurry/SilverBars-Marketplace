@@ -1,5 +1,8 @@
 import LiveOrderBoard from '../src/board.js'
 
+import OrderBoardPrinter from '../src/printer.js'
+jest.mock('../src/printer.js')
+
 const buyOrder = {
   userId: 1,
   quantity: 2.5,
@@ -153,6 +156,16 @@ describe('Live Order Board', () => {
         expect(liveOrderBoard._orders[0]).toEqual(buyOrder)
         expect(liveOrderBoard._orders[1]).toEqual(sellOrder)
       })
+    })
+  })
+
+  describe('#summary', () => {
+    test('it should delegate to the printer', () => {
+      const mockPrinter = new OrderBoardPrinter()
+      const liveOrderBoard = new LiveOrderBoard(null, mockPrinter)
+      liveOrderBoard.summary()
+      expect(mockPrinter.summary).toHaveBeenCalledTimes(1)
+      expect(mockPrinter.summary).toHaveBeenCalledWith(liveOrderBoard._orders)
     })
   })
 })

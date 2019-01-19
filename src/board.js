@@ -14,4 +14,8 @@ export default class LiveOrderBoard {
     this._orders.push(newOrder)
     return newOrder
   }
+
+  summary() {
+    return this.printer.summary(this._orders)
+  }
 }
