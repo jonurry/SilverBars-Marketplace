@@ -1,6 +1,7 @@
 export default class LiveOrderBoard {
-  constructor(orderFactory) {
+  constructor(orderFactory, printer) {
     this.orderFactory = orderFactory
+    this.printer = printer
     this._orders = []
   }
 

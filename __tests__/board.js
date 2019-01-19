@@ -29,6 +29,12 @@ describe('Live Order Board', () => {
       const liveOrderBoard = new LiveOrderBoard(orderFactory)
       expect(liveOrderBoard.orderFactory).toBe(orderFactory)
     })
+
+    test('it should take a Summary Printer as the second parameter', () => {
+      const printer = jest.fn()
+      const liveOrderBoard = new LiveOrderBoard(null, printer)
+      expect(liveOrderBoard.printer).toBe(printer)
+    })
   })
 
   describe('#registerOrder', () => {
