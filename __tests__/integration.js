@@ -13,4 +13,14 @@ describe('Integration Tests', () => {
     const board = new LiveOrderBoard()
     expect(board.summary()).toEqual('')
   })
+
+  test('Summary should be empty if orders are placed and then cancelled', () => {
+    const printer = new OrderBoardPrinter()
+    const board = new LiveOrderBoard(createOrder, printer)
+    board.registerOrder(1, 2.2, 301, 'BUY')
+    board.registerOrder(2, 3.0, 304, 'SELL')
+    board.cancelOrder(1)
+    board.cancelOrder(1)
+    expect(board.summary()).toEqual('')
+  })
 })
