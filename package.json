@@ -4,8 +4,11 @@
   "description": "tech test for credit suisse",
   "main": "index.js",
   "scripts": {
-    "build": "npx babel src --out-dir lib",
-    "test": "npx jest --coverage --verbose --watch"
+    "test": "npm run test:c",
+    "test:a": "npx jest --coverage --watch --verbose",
+    "test:c": "npx jest --coverage",
+    "test:w": "npx jest --watch",
+    "test:v": "npx jest --verbose"
   },
   "repository": {
     "type": "git",
