@@ -68,4 +68,9 @@ SELL: 1.2kg for £310`
     const printer = new OrderBoardPrinter()
     expect(printer.summary(sellOrders)).toEqual(expectedOutput)
   })
+
+  test('There are no Orders', () => {
+    const printer = new OrderBoardPrinter()
+    expect(printer.summary([])).toEqual('')
+  })
 })
