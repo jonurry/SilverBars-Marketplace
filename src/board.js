@@ -1,5 +1,8 @@
+import createOrder from '../src/order.js'
+import OrderBoardPrinter from '../src/printer.js'
+
 export default class LiveOrderBoard {
-  constructor(orderFactory, printer) {
+  constructor(orderFactory = createOrder, printer = new OrderBoardPrinter()) {
     this.orderFactory = orderFactory
     this.printer = printer
     this._orders = []
