@@ -35,6 +35,11 @@ describe('Live Order Board', () => {
       const liveOrderBoard = new LiveOrderBoard(null, printer)
       expect(liveOrderBoard.printer).toBe(printer)
     })
+
+    test('it should start with an empty array of orders', () => {
+      const liveOrderBoard = new LiveOrderBoard(null, null)
+      expect(liveOrderBoard._orders).toEqual([])
+    })
   })
 
   describe('#registerOrder', () => {
