@@ -34,4 +34,38 @@ BUY: 2.5kg for £303`
     const printer = new OrderBoardPrinter()
     expect(printer.summary(buyOrders)).toEqual(expectedOutput)
   })
+
+  test('Print SELL Orders (lowest price first)', () => {
+    const sellOrders = [
+      {
+        userId: 1,
+        quantity: 3.5,
+        price: 306,
+        type: 'SELL'
+      },
+      {
+        userId: 2,
+        quantity: 1.2,
+        price: 310,
+        type: 'SELL'
+      },
+      {
+        userId: 3,
+        quantity: 1.5,
+        price: 307,
+        type: 'SELL'
+      },
+      {
+        userId: 4,
+        quantity: 2.0,
+        price: 306,
+        type: 'SELL'
+      }
+    ]
+    const expectedOutput = `SELL: 5.5kg for £306
+SELL: 1.5kg for £307
+SELL: 1.2kg for £310`
+    const printer = new OrderBoardPrinter()
+    expect(printer.summary(sellOrders)).toEqual(expectedOutput)
+  })
 })
